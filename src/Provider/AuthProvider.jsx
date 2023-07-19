@@ -1,5 +1,4 @@
 import { createContext, useState } from 'react';
-import Swal from 'sweetalert2';
 
 export const AuthContext = createContext();
 
@@ -22,14 +21,14 @@ export const AuthProvider = ({ children }) => {
                 // Store the token in local storage
                 localStorage.setItem('token', token);
 
-                const user = { email }; 
+                const user = { email };
                 setUser(user);
                 console.log('Login Successful');
             } else {
                 console.log('Login failed');
             }
         } catch (error) {
-            console.log(error);
+            console.error('Error in login:', error);
         }
     };
 
@@ -44,24 +43,19 @@ export const AuthProvider = ({ children }) => {
             });
 
             if (response.ok) {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Your registration was successful',
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
+                const { token } = await response.json();
+
+                // Store the token in local storage
+                localStorage.setItem('token', token);
+
+                const user = { email: userData.email };
+                setUser(user);
+                console.log('Signup Successful');
             } else {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'error',
-                    title: 'Registration failed',
-                    showConfirmButton: false,
-                    timer: 1500,
-                });
+                console.log('Signup failed');
             }
         } catch (error) {
-            console.error('Error in registration:', error);
+            console.error('Error in signup:', error);
         }
     };
 

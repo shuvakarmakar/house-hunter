@@ -128,12 +128,11 @@ const ManageHouse = () => {
                             <th>House Image</th>
                             <th>House Name</th>
                             <th>Address</th>
-                            <th>Rent Per Month</th>
-                            <th>Room Size</th>
+                            <th>Rent Per Month(BDT)</th>
+                            <th>Room Size(SQ.Ft)</th>
                             <th>Bed Rooms</th>
                             <th>Bathrooms</th>
                             <th>Availability Date</th>
-                            <th>Phone</th>
                             <th>Description</th>
                             <th>Action</th>
                             <th>Action</th>
@@ -158,7 +157,6 @@ const ManageHouse = () => {
                                 <td className="whitespace-nowrap">{houseInfo.bedrooms}</td>
                                 <td className="whitespace-nowrap">{houseInfo.bathrooms}</td>
                                 <td className="whitespace-nowrap">{houseInfo.availabilityDate}</td>
-                                <td className="whitespace-nowrap">{houseInfo.phoneNumber}</td>
                                 <td className="whitespace-nowrap">{houseInfo.description}</td>
                                 <td className="whitespace-nowrap">
                                     <button onClick={() => handleUpdate(houseInfo)} className="btn btn-ghost bg-emerald-400 text-white"><FaEdit /></button>
