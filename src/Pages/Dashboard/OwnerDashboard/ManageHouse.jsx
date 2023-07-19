@@ -14,7 +14,7 @@ const ManageHouse = () => {
 
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/manage-house?ownerEmail=${user?.email}`)
+            fetch(`https://house-hunter-server-shuvakarmakar.vercel.app/manage-house?ownerEmail=${user?.email}`)
                 .then(res => {
                     if (!res.ok) {
                         throw new Error("Failed to fetch house details");
@@ -46,7 +46,7 @@ const ManageHouse = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/manage-house/${houseInfo._id}`, {
+                fetch(`https://house-hunter-server-shuvakarmakar.vercel.app/manage-house/${houseInfo._id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
@@ -74,7 +74,7 @@ const ManageHouse = () => {
     };
 
     const handleUpdateSubmit = (updatedHouseInfo) => {
-        fetch(`http://localhost:5000/houses/${selectedHouse._id}`, {
+        fetch(`https://house-hunter-server-shuvakarmakar.vercel.app/houses/${selectedHouse._id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

@@ -15,7 +15,7 @@ const Home = () => {
     const [searchQuery, setSearchQuery] = useState("");
 
     const fetchHouses = () => {
-        const url = `http://localhost:5000/allhouses?search=${encodeURIComponent(
+        const url = `https://house-hunter-server-shuvakarmakar.vercel.app/allhouses?search=${encodeURIComponent(
             searchQuery
         )}`;
 
@@ -36,7 +36,7 @@ const Home = () => {
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:5000/bookings/count?email=${user.email}`)
+            fetch(`https://house-hunter-server-shuvakarmakar.vercel.app/bookings/count?email=${user.email}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setBookingsCount(data.count);
@@ -75,7 +75,7 @@ const Home = () => {
             houseName: selectedHouse.houseName,
         };
 
-        fetch("http://localhost:5000/bookings", {
+        fetch("https://house-hunter-server-shuvakarmakar.vercel.app/bookings", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

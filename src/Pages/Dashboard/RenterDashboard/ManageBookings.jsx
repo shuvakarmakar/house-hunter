@@ -8,7 +8,7 @@ const ManageBookings = () => {
 
     useEffect(() => {
         if (user) {
-            fetch(`http://localhost:5000/bookings?email=${user.email}`)
+            fetch(`https://house-hunter-server-shuvakarmakar.vercel.app/bookings?email=${user.email}`)
                 .then((res) => res.json())
                 .then((data) => {
                     setBookings(data);
@@ -33,7 +33,7 @@ const ManageBookings = () => {
             cancelButtonText: "Cancel"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/bookings/${bookingId}`, {
+                fetch(`https://house-hunter-server-shuvakarmakar.vercel.app/bookings/${bookingId}`, {
                     method: "DELETE"
                 })
                     .then((response) => {
