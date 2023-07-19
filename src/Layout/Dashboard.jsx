@@ -15,7 +15,6 @@ const Dashboard = () => {
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
                 <div className="drawer-content lg:m-10 items-center justify-center">
                     <Outlet></Outlet>
-                    {/* Page content here */}
                     <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
                 </div>
                 <div className="drawer-side">
@@ -35,7 +34,7 @@ const Dashboard = () => {
                                         </NavLink>
                                     </li>
                                 </>
-                            ) : isRenter ? ( // <-- Add curly braces here
+                            ) : isRenter ? (
                                 <>
                                     <li>
                                         <NavLink to="/dashboard/managebookings">

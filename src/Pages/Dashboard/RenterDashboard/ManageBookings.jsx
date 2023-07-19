@@ -74,7 +74,7 @@ const ManageBookings = () => {
             <table className="table w-full">
                 <thead>
                     <tr>
-                        <th>Booking ID</th>
+                        <th>House Image</th>
                         <th>User Name</th>
                         <th>Email</th>
                         <th>Phone</th>
@@ -85,7 +85,13 @@ const ManageBookings = () => {
                 <tbody>
                     {bookings.map((booking) => (
                         <tr key={booking._id}>
-                            <td>{booking._id}</td>
+                            <td>
+                                    <div className="avatar">
+                                        <div className="mask mask-squircle w-12 h-12">
+                                            <img src={booking.image} alt="Avatar Tailwind CSS Component" />
+                                        </div>
+                                    </div>
+                                </td>
                             <td>{booking.name}</td>
                             <td>{booking.email}</td>
                             <td>{booking.phone}</td>

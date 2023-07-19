@@ -9,7 +9,6 @@ import PrivateRoute from "./PrivateRoute";
 import ManageHouse from "../Pages/Dashboard/OwnerDashboard/ManageHouse";
 import AddHouse from "../Pages/Dashboard/OwnerDashboard/AddHouse";
 import ManageBookings from "../Pages/Dashboard/RenterDashboard/ManageBookings";
-
 export const router = createBrowserRouter([
     {
         path: "/",

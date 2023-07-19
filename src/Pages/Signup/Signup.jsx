@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 
-// import Swal from 'sweetalert2';
+
 
 const Signup = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();

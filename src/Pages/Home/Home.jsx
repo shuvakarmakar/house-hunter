@@ -12,9 +12,14 @@ const Home = () => {
     const [phone, setPhone] = useState("");
     const [selectedHouseId, setSelectedHouseId] = useState("");
     const [bookingsCount, setBookingsCount] = useState(0);
+    const [searchQuery, setSearchQuery] = useState("");
 
-    useEffect(() => {
-        fetch("http://localhost:5000/houses")
+    const fetchHouses = () => {
+        const url = `http://localhost:5000/allhouses?search=${encodeURIComponent(
+            searchQuery
+        )}`;
+
+        fetch(url)
             .then((res) => res.json())
             .then((data) => {
                 setHouses(data);
@@ -23,7 +28,11 @@ const Home = () => {
                 console.error(error);
                 // Handle error condition
             });
-    }, []);
+    };
+
+    useEffect(() => {
+        fetchHouses();
+    }, [searchQuery]);
 
     useEffect(() => {
         if (user?.email) {
@@ -48,7 +57,7 @@ const Home = () => {
                 title: "Maximum Bookings Reached",
                 text: "You have already made 2 bookings",
                 showConfirmButton: false,
-                timer: 2000
+                timer: 2000,
             });
 
             return;
@@ -63,15 +72,15 @@ const Home = () => {
             ownerEmail: selectedHouse.ownerEmail,
             rentPerMonth: selectedHouse.rentPerMonth,
             image: selectedHouse.image,
-            houseName: selectedHouse.houseName
+            houseName: selectedHouse.houseName,
         };
 
         fetch("http://localhost:5000/bookings", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
         })
             .then((response) => {
                 if (response.ok) {
@@ -80,7 +89,7 @@ const Home = () => {
                         title: "Success",
                         text: "Data inserted successfully!",
                         showConfirmButton: false,
-                        timer: 2000
+                        timer: 2000,
                     });
                 } else {
                     throw new Error("Failed to insert data");
@@ -93,7 +102,7 @@ const Home = () => {
                     title: "Error",
                     text: "Failed to insert data",
                     showConfirmButton: false,
-                    timer: 2000
+                    timer: 2000,
                 });
             });
 
@@ -105,8 +114,23 @@ const Home = () => {
     return (
         <div>
             <div className="container mx-auto">
-                <h2 className="text-center text-4xl my-6 font-semibold">All Houses For Rent</h2>
+                <h2 className="text-center text-4xl my-6 font-semibold">
+                    All Houses For Rent
+                </h2>
+                <div className="flex justify-center mb-4">
+                    <div className="">
+                        <input
+                            type="text"
+                            className="input input-bordered"
+                            placeholder="Search..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                    </div>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+
                     {houses.map((house) => (
                         <div className="card w-96 bg-base-100 shadow-xl" key={house._id}>
                             <figure className="px-10 pt-10">
